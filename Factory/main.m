@@ -7,13 +7,11 @@
 
 int main(int argc, char * argv[])
 {
-    NSAutoreleasePool *const pool = [[NSAutoreleasePool alloc] init];
+    @autoreleasepool
     {
         Factory *const factory = [[Factory alloc] init];
         [factory simulateWorkingMonth];
-        [factory release];
     }
-    [pool release];
 
     return 0;
 }
