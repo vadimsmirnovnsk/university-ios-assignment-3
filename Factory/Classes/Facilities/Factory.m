@@ -12,7 +12,7 @@
 static const NSUInteger DefaultCapacityOfFinishedProductStorage = 10;
 static const NSUInteger DefaultCapacityOfRawMaterialStorage = 50;
 
-static const NSInteger DefaultNumberOfFreeTransporters = 8;
+static const NSUInteger DefaultNumberOfFreeTransporters = 8;
 static const NSUInteger DefaultLimitOnShipmentVolume = 5;
 
 @interface Factory ()
@@ -103,12 +103,12 @@ static const NSUInteger DefaultLimitOnShipmentVolume = 5;
 
         NSInteger counter = DefaultNumberOfFreeTransporters;
         while (--counter >= 0) {
-            Transporter *const transporter = [[Transporter alloc] init];
+            Transporter *const transporter = [[[Transporter alloc] init]autorelease];
             transporter.name = [NSString stringWithFormat:@"Name %li", (long)counter];
             transporter.surname = [NSString stringWithFormat:@"Surname %li", (long)counter];
             [transporter moveToLocation:self];
             [freeTransporters_ addObject:transporter];
-        }
+        } // while
 
         finishedProductStorage_ = [[Warehouse alloc] init];
         finishedProductStorage_.latitude = -1.f;
@@ -121,9 +121,9 @@ static const NSUInteger DefaultLimitOnShipmentVolume = 5;
         rawMaterialStorage_.capacity = DefaultCapacityOfRawMaterialStorage;
 
         while (![rawMaterialStorage_ isFull]) {
-            [rawMaterialStorage_ putWare:[[[RawMaterial alloc] init] autorelease]];
-        }
-    }
+            [rawMaterialStorage_ putWare:[[[RawMaterial alloc] init]autorelease]];
+        } // while
+    } // if
 
     return self;
 }
@@ -132,11 +132,25 @@ static const NSUInteger DefaultLimitOnShipmentVolume = 5;
 
 - (void)dealloc
 {
-    self.finishedProductStorage = nil;
-    self.rawMaterialStorage = nil;
-
+    
+    [freeTransporters_ release];
+    freeTransporters_ = nil;
+    
+    [occupiedTransporters_ release];
+    occupiedTransporters_ = nil;
+    
+    [restingTransporters_ release];
+    restingTransporters_ = nil;
+    
     [assemblyLine_ release];
     assemblyLine_ = nil;
+    
+    [finishedProductStorage_ release];
+    finishedProductStorage_ = nil;
+    
+    [rawMaterialStorage_ release];
+    rawMaterialStorage_ = nil;
+    
 
     [super dealloc];
 }
@@ -186,21 +200,20 @@ static const NSUInteger DefaultLimitOnShipmentVolume = 5;
     for (NSUInteger index = 0; index < 8; ++index) {
         NSAutoreleasePool *const pool = [[NSAutoreleasePool alloc] init];
         {
+        
             if ([self.freeTransporters count]) {
                 if (arc4random() % 7 == 0) {
-                    /**
-                     *  @remarks    One of the transporters has decided to retire.
-                     */
-                    [[self.freeTransporters anyObject] release];
+                    
+                     // @remarks    One of the transporters has decided to retire.
+                    [self.freeTransporters removeObject:[self.freeTransporters anyObject]];
                 }
             }
 
             if ([self.restingTransporters count]) {
                 if (arc4random() % 3 == 0) {
-                    /**
-                     *  @remarks    One of the resting transporters is ready
-                     *              to get back to work.
-                     */
+                  
+                     // @remarks    One of the resting transporters is ready to get back to work.
+                    
                     Transporter *const transporter = [self.restingTransporters anyObject];
                     [transporter moveToLocation:self];
 
@@ -210,7 +223,7 @@ static const NSUInteger DefaultLimitOnShipmentVolume = 5;
             }
 
             Transporter *const transporter = [self.freeTransporters anyObject];
-            if (!!transporter) {
+            if (transporter) {
                 const NSUInteger shipmentVolume = 1 + (arc4random() % DefaultLimitOnShipmentVolume);
                 transporter.cargo = [self.rawMaterialStorage shipWaresOfCount:shipmentVolume
                                                                         error:&error];
@@ -224,10 +237,7 @@ static const NSUInteger DefaultLimitOnShipmentVolume = 5;
                     [transporter moveToLocation:self.finishedProductStorage];
 
                     if ([self.finishedProductStorage isFull]) {
-                        /**
-                         *  @remarks    The warehouse is full, it's high time
-                         *              to sell its wares.
-                         */
+                         // @remarks    The warehouse is full, it's high time to sell its wares.
                         [self.finishedProductStorage shipWaresOfCount:[self.finishedProductStorage capacity]
                                                                 error:nil];
                     }
@@ -238,15 +248,13 @@ static const NSUInteger DefaultLimitOnShipmentVolume = 5;
                     [self.occupiedTransporters removeObject:transporter];
                 }
                 else {
-                    /**
-                     *  @remarks    There is not enough raw meterials,
-                     *              let's buy some.
-                     */
+                    // @remarks    There is not enough raw meterials,
+                    //             let's buy some.
                     while (![rawMaterialStorage_ isFull]) {
-                        [rawMaterialStorage_ putWare:[[[RawMaterial alloc] init] autorelease]];
+                        [rawMaterialStorage_ putWare:[[[RawMaterial alloc] init]autorelease]];
                     }
-                    [error release];
-                    error = nil;
+                    // [error release]; We shouldn't release autorelizing object
+                    // error = nil;
                 }
             }
         }

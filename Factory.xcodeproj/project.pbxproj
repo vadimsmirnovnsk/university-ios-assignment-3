@@ -31,10 +31,10 @@
 		937D108D18ADA8E000B0EE54 /* AssemblyLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssemblyLine.m; sourceTree = "<group>"; };
 		937D108E18ADA8E000B0EE54 /* Factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Factory.h; sourceTree = "<group>"; };
 		937D108F18ADA8E000B0EE54 /* Factory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Factory.m; sourceTree = "<group>"; };
-		937D109018ADA8E000B0EE54 /* LocationProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationProtocol.h; sourceTree = "<group>"; };
+		937D109018ADA8E000B0EE54 /* LocationProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationProtocol.h; path = Facilities/LocationProtocol.h; sourceTree = "<group>"; };
 		937D109118ADA8E000B0EE54 /* Warehouse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Warehouse.h; sourceTree = "<group>"; };
 		937D109218ADA8E000B0EE54 /* Warehouse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Warehouse.m; sourceTree = "<group>"; };
-		937D109318ADA8E000B0EE54 /* WarehouseProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WarehouseProtocol.h; sourceTree = "<group>"; };
+		937D109318ADA8E000B0EE54 /* WarehouseProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WarehouseProtocol.h; path = Facilities/WarehouseProtocol.h; sourceTree = "<group>"; };
 		937D109518ADA8E000B0EE54 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		937D109618ADA8E000B0EE54 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 		937D109718ADA8E000B0EE54 /* Transporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transporter.h; sourceTree = "<group>"; };
@@ -45,7 +45,7 @@
 		937D109D18ADA8E000B0EE54 /* MemoryPayload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemoryPayload.m; sourceTree = "<group>"; };
 		937D109E18ADA8E000B0EE54 /* RawMaterial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RawMaterial.h; sourceTree = "<group>"; };
 		937D109F18ADA8E000B0EE54 /* RawMaterial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RawMaterial.m; sourceTree = "<group>"; };
-		937D10A018ADA8E000B0EE54 /* WareProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WareProtocol.h; sourceTree = "<group>"; };
+		937D10A018ADA8E000B0EE54 /* WareProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WareProtocol.h; path = Wares/WareProtocol.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +108,7 @@
 		937D108A18ADA8E000B0EE54 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				CE6035B51977D43700CD8A16 /* Protocols */,
 				937D108B18ADA8E000B0EE54 /* Facilities */,
 				937D109418ADA8E000B0EE54 /* People */,
 				937D109918ADA8E000B0EE54 /* Wares */,
@@ -122,10 +123,8 @@
 				937D108D18ADA8E000B0EE54 /* AssemblyLine.m */,
 				937D108E18ADA8E000B0EE54 /* Factory.h */,
 				937D108F18ADA8E000B0EE54 /* Factory.m */,
-				937D109018ADA8E000B0EE54 /* LocationProtocol.h */,
 				937D109118ADA8E000B0EE54 /* Warehouse.h */,
 				937D109218ADA8E000B0EE54 /* Warehouse.m */,
-				937D109318ADA8E000B0EE54 /* WarehouseProtocol.h */,
 			);
 			path = Facilities;
 			sourceTree = "<group>";
@@ -150,9 +149,18 @@
 				937D109D18ADA8E000B0EE54 /* MemoryPayload.m */,
 				937D109E18ADA8E000B0EE54 /* RawMaterial.h */,
 				937D109F18ADA8E000B0EE54 /* RawMaterial.m */,
-				937D10A018ADA8E000B0EE54 /* WareProtocol.h */,
 			);
 			path = Wares;
+			sourceTree = "<group>";
+		};
+		CE6035B51977D43700CD8A16 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				937D10A018ADA8E000B0EE54 /* WareProtocol.h */,
+				937D109318ADA8E000B0EE54 /* WarehouseProtocol.h */,
+				937D109018ADA8E000B0EE54 /* LocationProtocol.h */,
+			);
+			name = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -181,7 +189,7 @@
 		935118BB18AC923A0087291D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = Noveo;
 			};
 			buildConfigurationList = 935118BE18AC923A0087291D /* Build configuration list for PBXProject "Factory" */;
@@ -247,11 +255,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
@@ -286,11 +293,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;

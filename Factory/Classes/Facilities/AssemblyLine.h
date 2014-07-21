@@ -10,8 +10,7 @@
 /**
  *  The class represent a simple assembly line in action.
  */
-@interface AssemblyLine : NSObject
-    <LocationProtocol>
+@interface AssemblyLine : NSObject <LocationProtocol>
 
 /**
  *  Returns the geographic coordinate that specifies
